@@ -1,0 +1,37 @@
+Steps to run the server and client
+
+bash build.sh
+cd cmake/build/
+./Server -dir serv
+./Client -f tmp -ip 0.0.0.0:50051 -cache cache
+
+1.1 POSIX compliance
+--All the posix api's are present in File: client_fuse.cc #220
+
+1.2 AFS protocol and semantics
+--Protocol primitive
+    --protos/dfs.proto #5
+
+--Update visibility
+    --File: RPC.cc #194
+
+--Stale cache
+    --File: RPC.cc #82
+    --New file is fetched
+
+1.3 Durability:
+--ALICE analysis
+    --Read report for more info.
+--Server side persistence
+    --File: server.cc #217
+
+1.4 Crash Recovery protocol:
+--Cleint side crash
+    --File: RPC.cc #92
+    --For further analysis,refer to report.
+--Server side crash
+    --File: server.cc #217
+    --Server is stateless. On reboot, no extra work is needed.
+
+2.1 Performance and 2.2 Reliability:
+Kindly refer to report
